@@ -1,0 +1,1208 @@
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aswin S Kumar | Machine Learning Engineer</title>
+    <meta name="description"
+        content="Portfolio of Aswin S Kumar, a Machine Learning Engineer focused on designing scalable ML systems, Deep Learning, and NLP.">
+
+    <!-- Fonts: Inter and JetBrains Mono (Thinner weights included) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=JetBrains+Mono:wght@300;400&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Iconify (using iconify-icon web component) -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+
+    <style>
+        html {
+            font-size: 18px;
+        }
+
+        :root {
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        body {
+            font-family: var(--font-sans);
+        }
+
+        .font-mono {
+            font-family: var(--font-mono);
+        }
+
+        /* Subtle grid background typical in Vercel/Linear designs */
+        .bg-grid {
+            background-size: 3rem 3rem;
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-position: top center;
+        }
+
+        /* Top glow effect */
+        .glow-top {
+            background: radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+        }
+
+        /* Glassmorphism nav */
+        .glass-nav {
+            background: rgba(9, 9, 11, 0.7);
+            /* zinc-950 equivalent */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Card hover transitions */
+        .card-subtle-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-subtle-hover:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Iconify Solar stroke override */
+        iconify-icon {
+            stroke-width: 1.5;
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(1.5rem);
+            transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered reveal delays for child elements */
+        .reveal-stagger>* {
+            opacity: 0;
+            transform: translateY(1rem);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal-stagger.active>*:nth-child(1) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.05s;
+        }
+
+        .reveal-stagger.active>*:nth-child(2) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.15s;
+        }
+
+        .reveal-stagger.active>*:nth-child(3) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.25s;
+        }
+
+        .reveal-stagger.active>*:nth-child(4) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.35s;
+        }
+
+        .reveal-stagger.active>*:nth-child(5) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.45s;
+        }
+
+        .reveal-stagger.active>*:nth-child(6) {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.55s;
+        }
+
+        /* Project card zoom hover */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition:
+                transform 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+                border-color 0.45s ease,
+                background 0.45s ease;
+            will-change: transform;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tilt-card:hover {
+            transform: scale(1.035);
+            box-shadow:
+                0 24px 70px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.12),
+                0 0 40px rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.18) !important;
+            background: rgba(255, 255, 255, 0.04) !important;
+            z-index: 10;
+        }
+
+        /* Make inner content brighter on card hover */
+        .tilt-card:hover h3 {
+            color: rgba(255, 255, 255, 1);
+            transition: color 0.4s ease;
+        }
+
+        .tilt-card:hover p.text-zinc-400,
+        .tilt-card:hover p {
+            color: rgba(212, 212, 216, 1);
+            transition: color 0.4s ease;
+        }
+
+        .tilt-card:hover ul li,
+        .tilt-card:hover .text-zinc-500 {
+            color: rgba(161, 161, 170, 1);
+            transition: color 0.4s ease;
+        }
+
+        .tilt-card:hover header p.text-zinc-500 {
+            color: rgba(161, 161, 170, 1);
+        }
+
+        .tilt-card:hover footer span {
+            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(212, 212, 216, 0.9);
+            transition: all 0.4s ease;
+        }
+
+        .tilt-card:hover .border-white\/10 {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Skill card shimmer on hover */
+        .skill-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-card:hover::after {
+            left: 160%;
+        }
+
+        /* Cursor glow */
+        #cursor-glow {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            z-index: 9999;
+            will-change: transform;
+        }
+
+        /* Magnetic button */
+        .mag-btn {
+            transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), background 0.2s ease;
+        }
+
+        /* Hero parallax layer */
+        .hero-content {
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        /* Floating particles canvas */
+        #hero-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Architecture step hover lift */
+        .arch-step {
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .arch-step:hover {
+            transform: translateY(-4px) scale(1.08);
+            opacity: 1 !important;
+        }
+
+        .arch-step>div {
+            transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .arch-step:hover>div {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.06);
+        }
+
+        /* Nav link underline slide */
+        nav a {
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.5);
+            transition: width 0.25s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Technology chips in skill cards */
+        .tech-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 0.68rem;
+            font-family: var(--font-mono);
+            color: rgba(161, 161, 170, 1);
+            transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .tech-chip:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(228, 228, 231, 1);
+        }
+
+        .tech-chip iconify-icon {
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+
+        /* Project accordion */
+        .proj-trigger {
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            outline: none;
+        }
+
+        .proj-trigger:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.15);
+            outline-offset: -2px;
+            border-radius: 0.75rem;
+        }
+
+        .proj-card.proj-open {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+    </style>
+</head>
+
+<body class="bg-zinc-950 text-zinc-400 antialiased selection:bg-zinc-800 selection:text-zinc-100 overflow-x-hidden">
+    <!-- Cursor glow -->
+    <div id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="text-zinc-100 font-medium tracking-tight text-sm flex items-center gap-3 group">
+                <span
+                    class="bg-zinc-100 text-zinc-950 text-xs font-medium px-2 py-1 rounded-md group-hover:bg-zinc-300 transition-colors"></span>
+                <span>Aswin S Kumar</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-normal">
+                <a href="#about" class="hover:text-zinc-100 transition-colors">About</a>
+                <a href="#skills" class="hover:text-zinc-100 transition-colors">Skills</a>
+                <a href="#architecture" class="hover:text-zinc-100 transition-colors">Architecture</a>
+                <a href="#projects" class="hover:text-zinc-100 transition-colors">Projects</a>
+                <a href="#contact" class="hover:text-zinc-100 transition-colors">Contact</a>
+            </div>
+
+            <button class="md:hidden text-zinc-400 hover:text-zinc-100 transition-colors"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <iconify-icon icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden absolute top-16 left-0 w-full bg-zinc-950/95 backdrop-blur-md border-b border-white/5 p-6 flex flex-col gap-6 text-sm">
+            <a href="#about" class="text-zinc-300 hover:text-zinc-100"
+                onclick="this.parentNode.classList.add('hidden')">About</a>
+            <a href="#skills" class="text-zinc-300 hover:text-zinc-100"
+                onclick="this.parentNode.classList.add('hidden')">Skills</a>
+            <a href="#architecture" class="text-zinc-300 hover:text-zinc-100"
+                onclick="this.parentNode.classList.add('hidden')">Architecture</a>
+            <a href="#projects" class="text-zinc-300 hover:text-zinc-100"
+                onclick="this.parentNode.classList.add('hidden')">Projects</a>
+            <a href="#contact" class="text-zinc-300 hover:text-zinc-100"
+                onclick="this.parentNode.classList.add('hidden')">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col justify-center items-center text-center pt-24 px-6 bg-grid">
+        <div class="absolute inset-0 glow-top pointer-events-none"></div>
+        <canvas id="hero-particles"></canvas>
+
+        <div class="reveal hero-content max-w-4xl relative z-10 flex flex-col items-center space-y-8">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-zinc-300 backdrop-blur-sm">
+                <iconify-icon icon="solar:cpu-linear" width="16" class="text-zinc-100"></iconify-icon>
+                Machine Learning Engineer
+            </div>
+
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-zinc-100 leading-tight">
+                I build intelligent systems <br class="hidden md:block">
+                <span class="text-zinc-500">from data to deployment.</span>
+            </h1>
+
+            <p class="text-base md:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+                Focused on designing scalable Machine Learning systems with strong foundations in Deep Learning, NLP,
+                Big Data ecosystems, and production deployment.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 w-full sm:w-auto">
+                <a href="#projects"
+                    class="w-full sm:w-auto px-6 py-2.5 bg-zinc-100 text-zinc-950 text-sm font-medium rounded-md hover:bg-zinc-200 transition-all flex items-center justify-center gap-2">
+                    View Projects
+                    <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+                </a>
+                <a href="#contact"
+                    class="w-full sm:w-auto px-6 py-2.5 border border-white/10 text-zinc-100 text-sm font-medium rounded-md hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+                    Contact Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 relative border-t border-white/5">
+        <div class="reveal max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <!-- Left: photo + heading -->
+            <div class="md:col-span-4 flex flex-col items-center md:items-start gap-6">
+                <!-- Profile photo — blends into dark page on all edges -->
+                <div class="relative w-56 md:w-full max-w-xs overflow-hidden" style="background:#000;">
+                    <img src="1771608888589.png" alt="Aswin S Kumar" class="w-full object-cover object-top"
+                        style="display:block;">
+                    <!-- Top fade -->
+                    <div class="absolute top-0 left-0 w-full h-6 pointer-events-none"
+                        style="background: linear-gradient(to bottom, #09090b, transparent);"></div>
+                    <!-- Bottom fade -->
+                    <div class="absolute bottom-0 left-0 w-full h-24 pointer-events-none"
+                        style="background: linear-gradient(to top, #09090b, transparent);"></div>
+                    <!-- Left fade -->
+                    <div class="absolute top-0 left-0 h-full w-16 pointer-events-none"
+                        style="background: linear-gradient(to right, #09090b, transparent);"></div>
+                    <!-- Right fade -->
+                    <div class="absolute top-0 right-0 h-full w-16 pointer-events-none"
+                        style="background: linear-gradient(to left, #09090b, transparent);"></div>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-medium text-zinc-100 tracking-tight">Systematic AI<br>Engineering.
+                </h2>
+            </div>
+            <div class="md:col-span-8 space-y-8">
+                <p class="text-base leading-relaxed text-zinc-300">
+                    My background is rooted in engineering and systems thinking. I view Machine Learning not just as
+                    training models, but as building robust, end-to-end architectures that solve real-world problems
+                    reliably at scale.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                    <div class="space-y-3">
+                        <iconify-icon icon="solar:layers-linear" width="24" class="text-zinc-100"></iconify-icon>
+                        <h3 class="text-sm font-medium text-zinc-100">Strong Fundamentals</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Deep understanding of ML and Deep Learning
+                            architectures, beyond simple API integrations.</p>
+                    </div>
+                    <div class="space-y-3">
+                        <iconify-icon icon="solar:server-square-linear" width="24" class="text-zinc-100"></iconify-icon>
+                        <h3 class="text-sm font-medium text-zinc-100">Distributed Systems</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Hands-on work with Big Data ecosystems and
+                            scalable AI architecture.</p>
+                    </div>
+                    <div class="space-y-3">
+                        <iconify-icon icon="solar:git-network-linear" width="24" class="text-zinc-100"></iconify-icon>
+                        <h3 class="text-sm font-medium text-zinc-100">Complete Pipelines</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Experience building pipelines from raw data
+                            ingestion to inference and monitoring.</p>
+                    </div>
+                    <div class="space-y-3">
+                        <iconify-icon icon="solar:rocket-linear" width="24" class="text-zinc-100"></iconify-icon>
+                        <h3 class="text-sm font-medium text-zinc-100">Production Mindset</h3>
+                        <p class="text-sm text-zinc-500 leading-relaxed">Continuous learning driven by real-world
+                            implementation and deployment stability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 px-6 relative border-t border-white/5 bg-zinc-900/20">
+        <div class="reveal max-w-6xl mx-auto space-y-12">
+            <div class="space-y-2">
+                <h2 class="text-2xl md:text-3xl font-medium text-zinc-100 tracking-tight">Technical Arsenal</h2>
+                <p class="text-sm text-zinc-500">Core technologies and frameworks I utilize daily.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- AI & ML -->
+                <div class="skill-card p-6 rounded-2xl bg-zinc-900 border border-white/5 card-subtle-hover relative overflow-hidden group"
+                    style="border-top: 2px solid rgba(99,102,241,0.6);">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl">
+                    </div>
+                    <div class="flex items-center gap-3 mb-5 text-zinc-100">
+                        <div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                            <iconify-icon icon="solar:cpu-linear" width="18"
+                                style="color:rgb(129,140,248);"></iconify-icon>
+                        </div>
+                        <h3 class="text-sm font-medium">AI &amp; Machine Learning</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-chip"><iconify-icon icon="logos:python"
+                                width="13"></iconify-icon>Python</span>
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:scikitlearn" width="13"
+                                style="color:#f7931e;"></iconify-icon>Scikit-learn</span>
+                        <span class="tech-chip"><iconify-icon icon="logos:tensorflow"
+                                width="13"></iconify-icon>TensorFlow</span>
+                        <span class="tech-chip"><iconify-icon icon="logos:pytorch-icon"
+                                width="13"></iconify-icon>PyTorch</span>
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:keras" width="13"
+                                style="color:#d00000;"></iconify-icon>Keras</span>
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:huggingface" width="13"
+                                style="color:#ffd21e;"></iconify-icon>Hugging Face</span>
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:langchain" width="13"
+                                style="color:#1c8e49;"></iconify-icon>LangChain</span>
+                    </div>
+                </div>
+
+                <!-- Deep Learning -->
+                <div class="skill-card p-6 rounded-2xl bg-zinc-900 border border-white/5 card-subtle-hover relative overflow-hidden group"
+                    style="border-top: 2px solid rgba(168,85,247,0.6);">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl">
+                    </div>
+                    <div class="flex items-center gap-3 mb-5 text-zinc-100">
+                        <div class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                            <iconify-icon icon="solar:diagram-down-linear" width="18"
+                                style="color:rgb(192,132,252);"></iconify-icon>
+                        </div>
+                        <h3 class="text-sm font-medium">Deep Learning</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-chip"><iconify-icon icon="solar:layers-linear"
+                                width="13"></iconify-icon>CNN</span>
+                        <span class="tech-chip"><iconify-icon icon="solar:repeat-linear"
+                                width="13"></iconify-icon>RNN</span>
+                        <span class="tech-chip"><iconify-icon icon="solar:repeat-linear"
+                                width="13"></iconify-icon>LSTM</span>
+                        <span class="tech-chip"><iconify-icon icon="solar:repeat-linear"
+                                width="13"></iconify-icon>GRU</span>
+                        <span class="tech-chip"><iconify-icon icon="solar:magic-stick-3-linear"
+                                width="13"></iconify-icon>GANs</span>
+                        <span class="tech-chip"><iconify-icon icon="solar:code-square-linear"
+                                width="13"></iconify-icon>VAEs</span>
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:huggingface" width="13"
+                                style="color:#ffd21e;"></iconify-icon>Transformers</span>
+                        <span class="tech-chip"><iconify-icon icon="solar:text-field-linear"
+                                width="13"></iconify-icon>NLP</span>
+                    </div>
+                </div>
+
+                <!-- Computer Vision -->
+                <div class="skill-card p-6 rounded-2xl bg-zinc-900 border border-white/5 card-subtle-hover relative overflow-hidden group"
+                    style="border-top: 2px solid rgba(20,184,166,0.6);">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl">
+                    </div>
+                    <div class="flex items-center gap-3 mb-5 text-zinc-100">
+                        <div class="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center">
+                            <iconify-icon icon="solar:camera-linear" width="18"
+                                style="color:rgb(45,212,191);"></iconify-icon>
+                        </div>
+                        <h3 class="text-sm font-medium">Computer Vision</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:opencv" width="13"
+                                style="color:#5c3ee8;"></iconify-icon>OpenCV</span>
+                        <span class="tech-chip"><iconify-icon icon="solar:target-linear"
+                                width="13"></iconify-icon>Object Detection</span>
+                        <span class="tech-chip"><iconify-icon icon="solar:layers-minimalistic-linear"
+                                width="13"></iconify-icon>Segmentation</span>
+                        <span class="tech-chip"><iconify-icon icon="solar:chart-square-linear"
+                                width="13"></iconify-icon>YOLO</span>
+                    </div>
+                </div>
+
+                <!-- Data Engineering -->
+                <div class="skill-card p-6 rounded-2xl bg-zinc-900 border border-white/5 card-subtle-hover relative overflow-hidden group"
+                    style="border-top: 2px solid rgba(251,146,60,0.6);">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl">
+                    </div>
+                    <div class="flex items-center gap-3 mb-5 text-zinc-100">
+                        <div class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center">
+                            <iconify-icon icon="solar:database-linear" width="18"
+                                style="color:rgb(251,146,60);"></iconify-icon>
+                        </div>
+                        <h3 class="text-sm font-medium">Data Engineering</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:pandas" width="13"
+                                style="color:#150458;background:#e8e8e8;border-radius:2px;padding:1px 2px;"></iconify-icon>Pandas</span>
+                        <span class="tech-chip"><iconify-icon icon="logos:numpy" width="13"></iconify-icon>NumPy</span>
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:apachespark" width="13"
+                                style="color:#e25a1c;"></iconify-icon>Apache Spark</span>
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:apachehadoop" width="13"
+                                style="color:#66ccff;"></iconify-icon>Hadoop</span>
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:apachehive" width="13"
+                                style="color:#fdee21;"></iconify-icon>Hive</span>
+                    </div>
+                </div>
+
+                <!-- MLOps -->
+                <div class="skill-card p-6 rounded-2xl bg-zinc-900 border border-white/5 card-subtle-hover relative overflow-hidden group"
+                    style="border-top: 2px solid rgba(52,211,153,0.6);">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl">
+                    </div>
+                    <div class="flex items-center gap-3 mb-5 text-zinc-100">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                            <iconify-icon icon="solar:settings-linear" width="18"
+                                style="color:rgb(52,211,153);"></iconify-icon>
+                        </div>
+                        <h3 class="text-sm font-medium">MLOps</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-chip"><iconify-icon icon="logos:docker-icon"
+                                width="13"></iconify-icon>Docker</span>
+                        <span class="tech-chip"><iconify-icon icon="simple-icons:mlflow" width="13"
+                                style="color:#0194e2;"></iconify-icon>MLflow</span>
+                        <span class="tech-chip"><iconify-icon icon="logos:github-icon" width="13"></iconify-icon>GitHub
+                            Actions</span>
+                        <span class="tech-chip"><iconify-icon icon="solar:chart-line-duotone"
+                                width="13"></iconify-icon>Experiment Tracking</span>
+                    </div>
+                </div>
+
+                <!-- Backend & Cloud -->
+                <div class="skill-card p-6 rounded-2xl bg-zinc-900 border border-white/5 card-subtle-hover relative overflow-hidden group"
+                    style="border-top: 2px solid rgba(96,165,250,0.6);">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl">
+                    </div>
+                    <div class="flex items-center gap-3 mb-5 text-zinc-100">
+                        <div class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                            <iconify-icon icon="solar:cloud-linear" width="18"
+                                style="color:rgb(96,165,250);"></iconify-icon>
+                        </div>
+                        <h3 class="text-sm font-medium">Backend &amp; Cloud</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-chip"><iconify-icon icon="logos:django-icon"
+                                width="13"></iconify-icon>Django</span>
+                        <span class="tech-chip"><iconify-icon icon="logos:flask" width="13"></iconify-icon>Flask</span>
+                        <span class="tech-chip"><iconify-icon icon="logos:fastapi-icon"
+                                width="13"></iconify-icon>FastAPI</span>
+                        <span class="tech-chip"><iconify-icon icon="logos:aws" width="13"></iconify-icon>AWS</span>
+                        <span class="tech-chip"><iconify-icon icon="logos:microsoft-azure"
+                                width="13"></iconify-icon>Azure</span>
+                        <span class="tech-chip"><iconify-icon icon="logos:google-cloud"
+                                width="13"></iconify-icon>GCP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI System Architecture Section -->
+    <section id="architecture" class="py-24 px-6 relative border-t border-white/5">
+        <div class="reveal max-w-6xl mx-auto space-y-12">
+            <div class="space-y-2 text-center">
+                <h2 class="text-2xl md:text-3xl font-medium text-zinc-100 tracking-tight">How I Build ML Systems</h2>
+                <p class="text-sm text-zinc-500">A structured approach to the machine learning lifecycle.</p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-3 md:gap-4 pt-8">
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center gap-2 arch-step">
+                    <div
+                        class="w-12 h-12 rounded-full border border-white/10 bg-zinc-900 flex items-center justify-center text-zinc-100">
+                        <iconify-icon icon="solar:database-linear" width="20"></iconify-icon>
+                    </div>
+                    <span class="text-zinc-400 font-medium" style="font-size:0.65rem;">Data</span>
+                </div>
+                <iconify-icon icon="solar:alt-arrow-right-linear" width="16"
+                    class="text-zinc-600 hidden sm:block"></iconify-icon>
+
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center gap-2 arch-step">
+                    <div
+                        class="w-12 h-12 rounded-full border border-white/10 bg-zinc-900 flex items-center justify-center text-zinc-100">
+                        <iconify-icon icon="solar:broom-linear" width="20"></iconify-icon>
+                    </div>
+                    <span class="text-zinc-400 font-medium" style="font-size:0.65rem;">Cleaning</span>
+                </div>
+                <iconify-icon icon="solar:alt-arrow-right-linear" width="16"
+                    class="text-zinc-600 hidden sm:block"></iconify-icon>
+
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center gap-2 arch-step">
+                    <div
+                        class="w-12 h-12 rounded-full border border-white/10 bg-zinc-900 flex items-center justify-center text-zinc-100">
+                        <iconify-icon icon="solar:magic-stick-3-linear" width="20"></iconify-icon>
+                    </div>
+                    <span class="text-zinc-400 font-medium text-center" style="font-size:0.65rem;">Feature Eng</span>
+                </div>
+                <iconify-icon icon="solar:alt-arrow-right-linear" width="16"
+                    class="text-zinc-600 hidden sm:block"></iconify-icon>
+
+                <!-- Step 4 -->
+                <div class="flex flex-col items-center gap-2 arch-step">
+                    <div
+                        class="w-12 h-12 rounded-full border border-zinc-100 bg-zinc-100 flex items-center justify-center text-zinc-950">
+                        <iconify-icon icon="solar:cpu-linear" width="20"></iconify-icon>
+                    </div>
+                    <span class="text-zinc-100 font-medium" style="font-size:0.65rem;">Modeling</span>
+                </div>
+                <iconify-icon icon="solar:alt-arrow-right-linear" width="16"
+                    class="text-zinc-600 hidden sm:block"></iconify-icon>
+
+                <!-- Step 5 -->
+                <div class="flex flex-col items-center gap-2 arch-step">
+                    <div
+                        class="w-12 h-12 rounded-full border border-white/10 bg-zinc-900 flex items-center justify-center text-zinc-100">
+                        <iconify-icon icon="solar:chart-square-linear" width="20"></iconify-icon>
+                    </div>
+                    <span class="text-zinc-400 font-medium" style="font-size:0.65rem;">Evaluation</span>
+                </div>
+                <iconify-icon icon="solar:alt-arrow-right-linear" width="16"
+                    class="text-zinc-600 hidden sm:block"></iconify-icon>
+
+                <!-- Step 6 -->
+                <div class="flex flex-col items-center gap-2 arch-step">
+                    <div
+                        class="w-12 h-12 rounded-full border border-white/10 bg-zinc-900 flex items-center justify-center text-zinc-100">
+                        <iconify-icon icon="solar:cloud-upload-linear" width="20"></iconify-icon>
+                    </div>
+                    <span class="text-zinc-400 font-medium" style="font-size:0.65rem;">Deployment</span>
+                </div>
+                <iconify-icon icon="solar:alt-arrow-right-linear" width="16"
+                    class="text-zinc-600 hidden sm:block"></iconify-icon>
+
+                <!-- Step 7 -->
+                <div class="flex flex-col items-center gap-2 arch-step">
+                    <div
+                        class="w-12 h-12 rounded-full border border-white/10 bg-zinc-900 flex items-center justify-center text-zinc-100">
+                        <iconify-icon icon="solar:pulse-linear" width="20"></iconify-icon>
+                    </div>
+                    <span class="text-zinc-400 font-medium" style="font-size:0.65rem;">Monitoring</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 px-6 relative border-t border-white/5 bg-zinc-900/20">
+        <div class="max-w-4xl mx-auto space-y-12">
+            <div class="reveal space-y-2">
+                <h2 class="text-2xl md:text-3xl font-medium text-zinc-100 tracking-tight">Selected Work</h2>
+                <p class="text-sm text-zinc-500">Click a project to explore the details.</p>
+            </div>
+
+            <div class="space-y-3" style="isolation: isolate;">
+
+                <!-- Project 1 -->
+                <article class="reveal proj-card rounded-xl border border-white/5 bg-zinc-900/50 overflow-hidden">
+                    <!-- Clickable header -->
+                    <button
+                        class="proj-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+                        onclick="toggleProject(this)">
+                        <div class="flex items-center gap-4 min-w-0">
+                            <div
+                                class="flex-shrink-0 w-9 h-9 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center text-zinc-400 group-hover:text-zinc-100 transition-colors">
+                                <iconify-icon icon="solar:magic-stick-3-linear" width="17"></iconify-icon>
+                            </div>
+                            <div class="min-w-0">
+                                <h3 class="text-sm font-medium text-zinc-100 truncate">GAN-Based Image Super Resolution
+                                </h3>
+                                <p class="text-xs font-mono text-zinc-500 mt-0.5">400% Upscaling · Real-ESRGAN</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 flex-shrink-0">
+                            <a href="#" class="text-zinc-600 hover:text-zinc-100 transition-colors" title="View Source"
+                                onclick="event.stopPropagation()">
+                                <iconify-icon icon="solar:link-circle-linear" width="18"></iconify-icon>
+                            </a>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16"
+                                class="proj-chevron text-zinc-500 transition-transform duration-300"></iconify-icon>
+                        </div>
+                    </button>
+                    <!-- Collapsible body -->
+                    <div class="proj-body"
+                        style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <div class="px-6 pb-6 space-y-5 border-t border-white/5 pt-5">
+                            <p class="text-sm text-zinc-400 leading-relaxed border-l-2 border-white/10 pl-4">
+                                A Generative Adversarial Network (GAN) based on Real-ESRGAN that upscales low-resolution
+                                images by 400% while preserving fine texture and perceptual quality, going well beyond
+                                conventional interpolation blurring.
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <h4 class="text-xs font-medium text-zinc-100 uppercase tracking-widest">
+                                        Implementation Details</h4>
+                                    <ul class="text-sm text-zinc-500 space-y-2 list-inside list-disc">
+                                        <li>Generator and Discriminator architecture design.</li>
+                                        <li>Combined Adversarial + Perceptual (VGG) loss functions.</li>
+                                        <li>Training stability handling and mode collapse prevention.</li>
+                                    </ul>
+                                </div>
+                                <div class="space-y-2">
+                                    <h4 class="text-xs font-medium text-zinc-100 uppercase tracking-widest">Demonstrates
+                                    </h4>
+                                    <p class="text-sm text-zinc-500 leading-relaxed">Advanced GAN training dynamics,
+                                        perceptual loss design, image quality evaluation and visual comparison.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 pt-1 border-t border-white/5">
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">PyTorch</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Real-ESRGAN</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">GANs</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Computer
+                                    Vision</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="reveal proj-card rounded-xl border border-white/5 bg-zinc-900/50 overflow-hidden">
+                    <button
+                        class="proj-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+                        onclick="toggleProject(this)">
+                        <div class="flex items-center gap-4 min-w-0">
+                            <div
+                                class="flex-shrink-0 w-9 h-9 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center text-zinc-400 group-hover:text-zinc-100 transition-colors">
+                                <iconify-icon icon="solar:text-field-linear" width="17"></iconify-icon>
+                            </div>
+                            <div class="min-w-0">
+                                <h3 class="text-sm font-medium text-zinc-100 truncate">Customer Support Ticket
+                                    Intelligence System</h3>
+                                <p class="text-xs font-mono text-zinc-500 mt-0.5">End-to-End NLP Pipeline</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 flex-shrink-0">
+                            <a href="#" class="text-zinc-600 hover:text-zinc-100 transition-colors" title="View Source"
+                                onclick="event.stopPropagation()">
+                                <iconify-icon icon="solar:link-circle-linear" width="18"></iconify-icon>
+                            </a>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16"
+                                class="proj-chevron text-zinc-500 transition-transform duration-300"></iconify-icon>
+                        </div>
+                    </button>
+                    <div class="proj-body"
+                        style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <div class="px-6 pb-6 space-y-5 border-t border-white/5 pt-5">
+                            <p class="text-sm text-zinc-400 leading-relaxed border-l-2 border-white/10 pl-4">
+                                An end-to-end NLP pipeline using transformer models to classify, prioritize, and route
+                                customer support tickets automatically — combining ticket classification with
+                                sentiment-driven prioritization.
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <h4 class="text-xs font-medium text-zinc-100 uppercase tracking-widest">
+                                        Implementation Details</h4>
+                                    <ul class="text-sm text-zinc-500 space-y-2 list-inside list-disc">
+                                        <li>Text preprocessing pipeline (tokenization, cleaning, normalization).</li>
+                                        <li>Fine-tuned BERT-based model for ticket category classification.</li>
+                                        <li>Sentiment analysis layer for urgency-based ticket prioritization.</li>
+                                    </ul>
+                                </div>
+                                <div class="space-y-2">
+                                    <h4 class="text-xs font-medium text-zinc-100 uppercase tracking-widest">Demonstrates
+                                    </h4>
+                                    <p class="text-sm text-zinc-500 leading-relaxed">Production-style NLP system design,
+                                        transformer fine-tuning, and multi-task inference for real-world enterprise
+                                        automation.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 pt-1 border-t border-white/5">
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">BERT</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Transformers</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Hugging
+                                    Face</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">NLP</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="reveal proj-card rounded-xl border border-white/5 bg-zinc-900/50 overflow-hidden">
+                    <button
+                        class="proj-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+                        onclick="toggleProject(this)">
+                        <div class="flex items-center gap-4 min-w-0">
+                            <div
+                                class="flex-shrink-0 w-9 h-9 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center text-zinc-400 group-hover:text-zinc-100 transition-colors">
+                                <iconify-icon icon="solar:camera-linear" width="17"></iconify-icon>
+                            </div>
+                            <div class="min-w-0">
+                                <h3 class="text-sm font-medium text-zinc-100 truncate">Real-Time Object Detection using
+                                    OpenCV</h3>
+                                <p class="text-xs font-mono text-zinc-500 mt-0.5">Computer Vision · Live Inference</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 flex-shrink-0">
+                            <a href="#" class="text-zinc-600 hover:text-zinc-100 transition-colors" title="View Source"
+                                onclick="event.stopPropagation()">
+                                <iconify-icon icon="solar:link-circle-linear" width="18"></iconify-icon>
+                            </a>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16"
+                                class="proj-chevron text-zinc-500 transition-transform duration-300"></iconify-icon>
+                        </div>
+                    </button>
+                    <div class="proj-body"
+                        style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <div class="px-6 pb-6 space-y-5 border-t border-white/5 pt-5">
+                            <p class="text-sm text-zinc-400 leading-relaxed border-l-2 border-white/10 pl-4">
+                                Implemented real-time object detection using OpenCV and deep learning models with
+                                accurate bounding box predictions — demonstrating core computer vision fundamentals and
+                                real-time AI systems.
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <h4 class="text-xs font-medium text-zinc-100 uppercase tracking-widest">
+                                        Implementation Details</h4>
+                                    <ul class="text-sm text-zinc-500 space-y-2 list-inside list-disc">
+                                        <li>Live video stream capture and frame-level processing.</li>
+                                        <li>Deep learning model inference with bounding box prediction.</li>
+                                        <li>Real-time rendering of detection results on video output.</li>
+                                    </ul>
+                                </div>
+                                <div class="space-y-2">
+                                    <h4 class="text-xs font-medium text-zinc-100 uppercase tracking-widest">Demonstrates
+                                    </h4>
+                                    <p class="text-sm text-zinc-500 leading-relaxed">Strong grasp of computer vision
+                                        fundamentals, real-time inference pipelines, and practical application of deep
+                                        learning models on live video data.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 pt-1 border-t border-white/5">
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">OpenCV</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Deep
+                                    Learning</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Python</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Computer
+                                    Vision</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="reveal proj-card rounded-xl border border-white/5 bg-zinc-900/50 overflow-hidden">
+                    <button
+                        class="proj-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+                        onclick="toggleProject(this)">
+                        <div class="flex items-center gap-4 min-w-0">
+                            <div
+                                class="flex-shrink-0 w-9 h-9 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center text-zinc-400 group-hover:text-zinc-100 transition-colors">
+                                <iconify-icon icon="solar:database-bold" width="17"></iconify-icon>
+                            </div>
+                            <div class="min-w-0">
+                                <h3 class="text-sm font-medium text-zinc-100 truncate">Big Data Log Analysis</h3>
+                                <p class="text-xs font-mono text-zinc-500 mt-0.5">Distributed Ecosystems</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 flex-shrink-0">
+                            <a href="#" class="text-zinc-600 hover:text-zinc-100 transition-colors" title="View Source"
+                                onclick="event.stopPropagation()">
+                                <iconify-icon icon="solar:link-circle-linear" width="18"></iconify-icon>
+                            </a>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16"
+                                class="proj-chevron text-zinc-500 transition-transform duration-300"></iconify-icon>
+                        </div>
+                    </button>
+                    <div class="proj-body"
+                        style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <div class="px-6 pb-6 space-y-5 border-t border-white/5 pt-5">
+                            <p class="text-sm text-zinc-400 leading-relaxed border-l-2 border-white/10 pl-4">
+                                Analyzed large-scale log data using distributed computing frameworks to extract
+                                behavioral patterns and system health insights.
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <h4 class="text-xs font-medium text-zinc-100 uppercase tracking-widest">
+                                        Implementation Details</h4>
+                                    <ul class="text-sm text-zinc-500 space-y-2 list-inside list-disc">
+                                        <li>HDFS data ingestion pipelines.</li>
+                                        <li>Hive external tables structuring.</li>
+                                        <li>Complex SQL-based aggregations and MapReduce flow.</li>
+                                    </ul>
+                                </div>
+                                <div class="space-y-2">
+                                    <h4 class="text-xs font-medium text-zinc-100 uppercase tracking-widest">Demonstrates
+                                    </h4>
+                                    <p class="text-sm text-zinc-500 leading-relaxed">Familiarity with the Big Data
+                                        ecosystem, capability to handle data beyond single-node limits, and distributed
+                                        systems awareness.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 pt-1 border-t border-white/5">
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Hadoop</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Hive</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">HDFS</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 5 -->
+                <article class="reveal proj-card rounded-xl border border-white/5 bg-zinc-900/50 overflow-hidden">
+                    <button
+                        class="proj-trigger w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+                        onclick="toggleProject(this)">
+                        <div class="flex items-center gap-4 min-w-0">
+                            <div
+                                class="flex-shrink-0 w-9 h-9 rounded-lg bg-white/5 border border-white/8 flex items-center justify-center text-zinc-400 group-hover:text-zinc-100 transition-colors">
+                                <iconify-icon icon="solar:chat-round-dots-linear" width="17"></iconify-icon>
+                            </div>
+                            <div class="min-w-0">
+                                <h3 class="text-sm font-medium text-zinc-100 truncate">LLM Chatbot Architecture</h3>
+                                <p class="text-xs font-mono text-zinc-500 mt-0.5">Containerized Deployment</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 flex-shrink-0">
+                            <a href="#" class="text-zinc-600 hover:text-zinc-100 transition-colors" title="View Source"
+                                onclick="event.stopPropagation()">
+                                <iconify-icon icon="solar:link-circle-linear" width="18"></iconify-icon>
+                            </a>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" width="16"
+                                class="proj-chevron text-zinc-500 transition-transform duration-300"></iconify-icon>
+                        </div>
+                    </button>
+                    <div class="proj-body"
+                        style="max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1);">
+                        <div class="px-6 pb-6 space-y-5 border-t border-white/5 pt-5">
+                            <p class="text-sm text-zinc-400 leading-relaxed border-l-2 border-white/10 pl-4">
+                                Built and deployed an LLM-powered chatbot bridging custom backend services with cloud
+                                inferences, utilizing session-based conversation management and containerized
+                                environments.
+                            </p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <h4 class="text-xs font-medium text-zinc-100 uppercase tracking-widest">
+                                        Implementation Details</h4>
+                                    <ul class="text-sm text-zinc-500 space-y-2 list-inside list-disc">
+                                        <li>Flask backend mapped to Hugging Face InferenceClient.</li>
+                                        <li>Session-based conversation management.</li>
+                                        <li>Full Docker containerization for reliable deployment.</li>
+                                    </ul>
+                                </div>
+                                <div class="space-y-2">
+                                    <h4 class="text-xs font-medium text-zinc-100 uppercase tracking-widest">Demonstrates
+                                    </h4>
+                                    <p class="text-sm text-zinc-500 leading-relaxed">Practical LLM integration, robust
+                                        API design, and production-aware deployment practices.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 pt-1 border-t border-white/5">
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Docker</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">Flask</span>
+                                <span
+                                    class="px-2 py-1 bg-zinc-950 border border-white/5 rounded text-[10px] font-mono text-zinc-400">LLMs</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Focus Section -->
+    <section class="py-24 px-6 relative border-t border-white/5">
+        <div class="reveal max-w-4xl mx-auto space-y-8">
+            <h2 class="text-2xl md:text-3xl font-medium text-zinc-100 tracking-tight text-center">Current Focus</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="flex items-start gap-4 p-5 rounded-lg border border-white/5 bg-zinc-900/30">
+                    <iconify-icon icon="solar:rocket-linear" width="24"
+                        class="text-zinc-100 flex-shrink-0 mt-1"></iconify-icon>
+                    <div>
+                        <h3 class="text-sm font-medium text-zinc-100">Production-ready ML</h3>
+                        <p class="text-xs text-zinc-500 mt-1">Bridging the gap between Jupyter notebooks and scalable
+                            backend architectures.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-5 rounded-lg border border-white/5 bg-zinc-900/30">
+                    <iconify-icon icon="solar:settings-linear" width="24"
+                        class="text-zinc-100 flex-shrink-0 mt-1"></iconify-icon>
+                    <div>
+                        <h3 class="text-sm font-medium text-zinc-100">MLOps Practices</h3>
+                        <p class="text-xs text-zinc-500 mt-1">Strengthening CI/CD for machine learning models and
+                            experiment tracking.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-5 rounded-lg border border-white/5 bg-zinc-900/30">
+                    <iconify-icon icon="solar:server-path-linear" width="24"
+                        class="text-zinc-100 flex-shrink-0 mt-1"></iconify-icon>
+                    <div>
+                        <h3 class="text-sm font-medium text-zinc-100">Distributed Computing</h3>
+                        <p class="text-xs text-zinc-500 mt-1">Scaling AI systems efficiently to handle massive,
+                            continuous datasets.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4 p-5 rounded-lg border border-white/5 bg-zinc-900/30">
+                    <iconify-icon icon="solar:text-field-linear" width="24"
+                        class="text-zinc-100 flex-shrink-0 mt-1"></iconify-icon>
+                    <div>
+                        <h3 class="text-sm font-medium text-zinc-100">Transformer Applications</h3>
+                        <p class="text-xs text-zinc-500 mt-1">Exploring fine-tuning and real-world deployment of
+                            foundational models.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-6 border-t border-white/5 relative flex flex-col items-center text-center">
+        <div class="reveal max-w-2xl space-y-6">
+            <h2 class="text-3xl md:text-4xl font-medium text-zinc-100 tracking-tight">Let's build something scalable.
+            </h2>
+            <p class="text-sm md:text-base text-zinc-400 leading-relaxed max-w-xl mx-auto">
+                I'm currently open to new opportunities to design and deploy machine learning architectures. Let's
+                connect if you're looking for an engineer who builds end-to-end.
+            </p>
+
+            <div class="pt-6">
+                <a href="mailto:aswinskumar26@gmail.com"
+                    class="inline-flex items-center gap-2 px-6 py-2.5 bg-zinc-100 text-zinc-950 text-sm font-medium rounded-md hover:bg-zinc-200 transition-colors">
+                    <iconify-icon icon="solar:letter-linear" width="18"></iconify-icon>
+                    Send an Email
+                </a>
+            </div>
+
+            <div class="flex justify-center items-center gap-6 pt-12">
+                <a href="https://github.com/aswin-git" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-100 transition-colors flex items-center gap-2 text-sm">
+                    <iconify-icon icon="solar:code-circle-linear" width="20"></iconify-icon>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/aswinskumar30/" target="_blank" rel="noopener noreferrer"
+                    class="text-zinc-500 hover:text-zinc-100 transition-colors flex items-center gap-2 text-sm">
+                    <iconify-icon icon="solar:users-group-rounded-linear" width="20"></iconify-icon>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-xs text-zinc-600 border-t border-white/5">
+        <p>© 2025 Aswin S Kumar. Engineered with precision.</p>
+    </footer>
+
+    <!-- Simple Scroll Reveal Script -->
+    <script>
+        /* ── Accordion toggle for project cards ── */
+        function toggleProject(btn) {
+            const card = btn.closest('.proj-card');
+            const body = card.querySelector('.proj-body');
+            const chevron = btn.querySelector('.proj-chevron');
+            const isOpen = card.classList.contains('proj-open');
+
+            // Optional accordion: close all other open cards first
+            document.querySelectorAll('.proj-card.proj-open').forEach(openCard => {
+                if (openCard !== card) {
+                    openCard.classList.remove('proj-open');
+                    openCard.querySelector('.proj-body').style.maxHeight = '0';
+                    openCard.querySelector('.proj-chevron').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            if (isOpen) {
+                card.classList.remove('proj-open');
+                body.style.maxHeight = '0';
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                card.classList.add('proj-open');
+                body.style.maxHeight = body.scrollHeight + 'px';
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        /* ── Scroll reveal ── */
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
